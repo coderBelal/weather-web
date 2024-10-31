@@ -10,7 +10,7 @@ import WeatherDetails from "./Components/WeatherDetails"
  const [error,setError]=useState("")
  const url= `http://api.weatherapi.com/v1/forecast.json?key=df05d0974e2c4dd1a95145446243010&q=${location}&days=1&aqi=yes&alerts=yes
 `
-const handleSearch = async (e) => {
+ const handleSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
   if (e.key === "Enter") {
     e.preventDefault()
     try {
@@ -24,10 +24,11 @@ const handleSearch = async (e) => {
       setError("")
     } catch (error) {
       setError("Unable to fetch weather data. Please try again.")
-     setData({})
+      setData({})
     }
   }
 }
+
 let content;
 if(Object.keys(data).length === 0 && error ===''){
   content=(
